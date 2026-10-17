@@ -1,0 +1,15 @@
+{
+ "mcpServers": {
+  "dart": {
+   "command": "python3",
+   "args": [
+    "-W",
+    "ignore",
+    "/Users/dante/Desktop/github/youtube/reports/youtube/2026-10-10-ai-engineer-career/course2/code/mcp_server/manual.py"
+   ],
+   "env": {
+    "MCP_TRACE": "/private/tmp/claude-501/-Users-dante-Desktop-github-youtube/01affb31-505a-4714-b83d-cfa22d76b036/scratchpad/mcp_trace.jsonl"
+   }
+  }
+ }
+}

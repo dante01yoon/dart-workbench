@@ -1,0 +1,25 @@
+# 17편: Render 무료 웹 서비스로 원격 MCP 서버를 올린다 (저장소 맨 위에 render.yaml로 두고 Blueprint로 만든다)
+# 공시 본문(data/rag)은 공개하면 안 되니 비공개 저장소에 올린다: git add -f data/rag data/reports
+services:
+  - type: web
+    name: dart-mcp
+    runtime: python
+    plan: free # 512MB · 쉬면 잠든다(첫 요청 약 50초)
+    buildCommand: pip install uv && uv sync --frozen --no-dev
+    startCommand: uv run --no-dev python sec17/server_remote.py
+    healthCheckPath: /.well-known/oauth-protected-resource/mcp # 토큰 없이 열리는 주소
+    envVars:
+      - key: MCP_HOST
+        value: "0.0.0.0" # 바깥에서 들어오게
+      - key: MCP_PUBLIC_URL # 배포 뒤 받은 주소(https://dart-mcp-xxxx.onrender.com)
+        sync: false
+      - key: MCP_TOKENS # 이름;sha256:해시;dart:read;https://<주소>/mcp — 해시만, 대시보드에 직접
+        sync: false
+      - key: DART_API_KEY # 서버 키는 서버에만. 사용자 토큰과 따로
+        sync: false
+      - key: OPENAI_API_KEY # 질문 임베딩(OpenRouter)
+        sync: false
+      - key: OPENAI_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: EMBED_MODEL
+        value: openai/text-embedding-3-small

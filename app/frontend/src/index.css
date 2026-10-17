@@ -1,0 +1,13 @@
+:root {
+  --fg: #16181d; --muted: #6a7080; --line: #e3e6ec; --panel: #ffffff; --bg: #f5f6f8; --track: #eef0f4;
+  --accent: #2f5fd0; --green: #137a50; --green-bg: #dff3ea; --red: #c23b3b; --red-bg: #fbe4e4;
+  font-family: "Pretendard", "Apple SD Gothic Neo", system-ui, sans-serif;
+  color: var(--fg); background: var(--bg);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e8eaf0; --muted: #9aa1b2; --line: #2c313c; --panel: #1a1d24; --bg: #111317; --track: #232733;
+    --green: #5fd3a0; --green-bg: #173a2c; --red: #f08a8a; --red-bg: #3d1d1d;
+  }
+}
+body { margin: 0; background: var(--bg); }

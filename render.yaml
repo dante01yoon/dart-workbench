@@ -1,0 +1,26 @@
+# 22편: 워크벤치(21편 화면 + 20편 백엔드)를 Render 무료 웹 서비스로 올린다. 저장소 맨 위에 두고 Blueprint로 만든다.
+# 화면은 미리 빌드한 sec21/web/dist를 같이 올린다(서버 하나가 화면 + API).
+# 검색 색인은 17편에 배포한 MCP 서버가 들고 있어서, 이 서버는 색인 없이 가볍게 뜬다(로컬 시험 약 115MB).
+services:
+  - type: web
+    name: dart-workbench
+    runtime: python
+    plan: free # 512MB · 쉬면 잠든다(첫 요청 약 50초)
+    buildCommand: pip install uv && uv sync --frozen --no-dev
+    startCommand: touch .env && uv run --no-dev uvicorn serve:app --app-dir sec22 --host 0.0.0.0 --port $PORT
+    healthCheckPath: /healthz
+    envVars:
+      - key: OPENAI_API_KEY # 모델 호출(OpenRouter) — 대시보드에 직접
+        sync: false
+      - key: OPENAI_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: MCP_URL # 17편 배포 MCP 서버
+        value: https://dart-mcp-324k.onrender.com/mcp
+      - key: MCP_TOKEN # 그 서버가 받는 토큰(17편 MCP_TOKEN_REMOTE) — 대시보드에 직접
+        sync: false
+      - key: ACCESS_CODE # 화면 접근 코드: Render가 무작위로 만든다 → 대시보드에서 확인해 나눠 준다
+        generateValue: true
+      - key: COST_CAP # 리서치 한 번의 비용 상한(달러)
+        value: "0.05"
+      - key: DAILY_RUNS # 하루 리서치 횟수 상한 → 하루 최대 0.05 × 30 = $1.5
+        value: "30"

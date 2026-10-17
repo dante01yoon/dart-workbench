@@ -1,0 +1,6 @@
+{
+  "dart": {
+    "allow_tools": ["list_reports", "get_financials", "search_filings"],
+    "read_only": true
+  }
+}

@@ -1,0 +1,22 @@
+[project]
+name = "dart-agent-practice"
+version = "0.1.0"
+description = "단테의 From Scratch #2 실습 — DART 사업보고서로 만드는 AI 투자 리서치 워크벤치"
+requires-python = ">=3.12"
+dependencies = [
+  "numpy>=2,<3",
+  "mcp==2.3.0",
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.30",
+  "ddgs>=9",
+  "openai>=1.60",
+]
+
+[dependency-groups]
+frameworks = ["langchain>=1.4", "langchain-openai>=1.7", "langchain-community>=0.4", "langchain-classic", "rank_bm25", "faiss-cpu", "llama-index-core>=0.14", "llama-index-embeddings-openai-like", "llama-index-retrievers-bm25", "llama-index-llms-openai-like", "langgraph>=1.2", "langgraph-checkpoint-sqlite"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 110

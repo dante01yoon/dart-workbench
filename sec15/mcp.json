@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dart": {
+      "command": "uv",
+      "args": ["run", "python", "sec15/server.py"],
+      "env": {"MCP_TRACE": "data/mcp_trace.jsonl"}
+    }
+  }
+}

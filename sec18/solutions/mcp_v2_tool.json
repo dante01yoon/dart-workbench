@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dart": {
+      "command": "uv",
+      "args": ["run", "python", "sec18/test_server.py"],
+      "env": {"DEMO_SCENARIO": "v2_tool", "MCP_TRACE": "data/trace18_a3.jsonl"}
+    }
+  }
+}

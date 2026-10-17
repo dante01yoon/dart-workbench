@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dart": {
+      "type": "http",
+      "url": "http://127.0.0.1:8790/mcp",
+      "headers": {"Authorization": "Bearer ${MCP_TOKEN_GOOD}"}
+    }
+  }
+}

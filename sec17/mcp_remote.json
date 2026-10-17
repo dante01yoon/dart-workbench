@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dart": {
+      "type": "http",
+      "url": "https://dart-mcp-324k.onrender.com/mcp",
+      "headers": {"Authorization": "Bearer ${MCP_TOKEN_REMOTE}"}
+    }
+  }
+}

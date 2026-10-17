@@ -1,0 +1,7 @@
+# 19편 어댑터 전용 환경 (실습 .venv의 mcp 2.3과 섞지 않는다)
+# langchain-mcp-adapters 0.3.2는 mcp<2를 요구한다. 0.3.1은 상한이 없어 설치는 되지만 import에서 깨진다.
+langchain-mcp-adapters==0.3.2
+langchain>=1.4
+langchain-openai>=1.7
+langgraph>=1.2
+numpy>=2  # 14편 팀(12편 워커 · 10편 검색)을 그대로 import하려고

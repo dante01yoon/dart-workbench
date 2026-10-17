@@ -1,0 +1,5 @@
+{
+  "permissions": {
+    "deny": ["mcp__dart__delete_cache"]
+  }
+}

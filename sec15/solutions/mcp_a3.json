@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dart": {
+      "command": "uv",
+      "args": ["run", "python", "sec15/solutions/a3_validate.py"],
+      "env": {"MCP_TRACE": "data/mcp_trace_a3.jsonl"}
+    }
+  }
+}

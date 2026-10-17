@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>워크벤치 · SSE 확인 화면</title>
+<style>
+  body { font-family: -apple-system, "Apple SD Gothic Neo", sans-serif; background: #14161c; color: #e8e6df; margin: 0; padding: 32px 48px; }
+  h1 { font-size: 26px; margin: 0 0 16px; } h1 span { color: #f2b84b; }
+  form { display: flex; gap: 10px; margin-bottom: 20px; }
+  input { flex: 1; font-size: 18px; padding: 10px 14px; border-radius: 10px; border: 1px solid #3a3f4b; background: #1b1e26; color: #f6f4ee; }
+  button { font-size: 17px; padding: 10px 20px; border-radius: 10px; border: 0; background: #f2b84b; color: #14161c; font-weight: 700; }
+  #status { font-size: 16px; color: #c8c4b8; margin-bottom: 14px; min-height: 22px; }
+  .row { display: flex; align-items: center; gap: 12px; margin: 6px 0; font-size: 15px; }
+  .lab { width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .track { flex: 1; position: relative; height: 18px; background: #1b1e26; border-radius: 6px; }
+  .bar { position: absolute; top: 0; height: 18px; border-radius: 6px; background: #3a6ea5; }
+  .bar.done { background: #4caf7d; }
+  .n { width: 80px; text-align: right; color: #c8c4b8; }
+  #report { margin-top: 24px; } .s { font-size: 17px; line-height: 1.6; margin: 8px 0; }
+  .b { display: inline-block; font-size: 13px; font-weight: 700; padding: 2px 8px; border-radius: 6px; margin-right: 8px; }
+  .지지 { background: #2e6b4a; } .부족 { background: #8a5d08; } .출처 { background: #6b2e2e; }
+</style>
+</head>
+<body>
+<h1>AI 투자 리서치 워크벤치 <span>· SSE 확인 화면</span></h1>
+<form id="f"><input id="q" value="카카오 2025년 실적과 사업 위험 요인을 정리해 줘"><button>리서치 시작</button></form>
+<div id="status"></div>
+<div id="rows"></div>
+<div id="report"></div>
+<script>
+const $ = (id) => document.getElementById(id);
+let total = 60, tasks = {};
+function bar(id) {
+  const t = tasks[id], end = t.end ?? t.now;
+  const el = $("bar-" + id);
+  el.style.left = (t.start / total * 100) + "%";
+  el.style.width = Math.max(0.5, (end - t.start) / total * 100) + "%";
+}
+$("f").onsubmit = (ev) => {
+  ev.preventDefault();
+  $("rows").innerHTML = ""; $("report").innerHTML = ""; tasks = {}; total = 60;
+  const es = new EventSource("/api/research?q=" + encodeURIComponent($("q").value));
+  const t0 = Date.now();
+  const tick = setInterval(() => { const now = (Date.now() - t0) / 1000; if (now > total) total = now * 1.2;
+    for (const id in tasks) { if (tasks[id].end == null) tasks[id].now = now; bar(id); } }, 300);
+  const on = (k, fn) => es.addEventListener(k, (m) => fn(JSON.parse(m.data)));
+  on("planning", () => $("status").textContent = "계획 세우는 중…");
+  on("plan", (e) => { $("status").textContent = `작업 ${e.tasks.length}개`;
+    for (const t of e.tasks) { tasks[t.id] = { start: 0 };
+      $("rows").insertAdjacentHTML("beforeend", `<div class="row"><div class="lab">${t.id} · ${t.worker} · ${t.corp || "-"}</div><div class="track"><div class="bar" id="bar-${t.id}"></div></div><div class="n" id="n-${t.id}"></div></div>`); } });
+  on("task_start", (e) => { tasks[e.id].start = e.t; tasks[e.id].now = e.t; });
+  on("task_end", (e) => { tasks[e.id].end = e.t; $("bar-" + e.id).classList.add("done"); $("n-" + e.id).textContent = `근거 ${e.n}`; bar(e.id); });
+  on("writing", (e) => $("status").textContent = `보고서 쓰는 중… (근거 ${e.evidence}개)`);
+  on("verify", (e) => $("status").textContent = `심판 ${e.round}차: 지지 ${e.ok}/${e.total} · 누적 $${e.spent}`);
+  on("revise", (e) => $("status").textContent = `반성: 부족한 문장 ${e.bad}개를 고치는 중…`);
+  on("revise_kept", () => $("status").textContent = "반성: 고친 답이 비어 원래 보고서를 유지");
+  on("done", (e) => { clearInterval(tick); es.close();
+    $("status").textContent = `완료 · ${e.seconds}초 · 반성 ${e.rounds}회 · $${e.spent}`;
+    $("report").innerHTML = e.report.map((s) => `<div class="s"><span class="b ${s.badge.split(" ")[0]}">${s.badge}</span>${s.sentence}</div>`).join(""); });
+  for (const k of ["budget", "error", "refused"]) on(k, (e) => { clearInterval(tick); es.close(); $("status").textContent = `${k}: ${e.message || "투자 권유 질문은 답하지 않습니다"}`; });
+};
+</script>
+</body>
+</html>

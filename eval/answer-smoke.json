@@ -1,0 +1,199 @@
+[
+ {
+  "q": "SK하이닉스의 2025년 연결 영업이익은 얼마인가?",
+  "refused": false,
+  "reason": "",
+  "answer": [
+   {
+    "sentence": "SK하이닉스의 2025년(제78기) 연결 영업이익은 47,206,319백만원(47.2조원)입니다.",
+    "cites": [
+     1,
+     4,
+     6
+    ],
+    "check": "ok",
+    "missing": []
+   }
+  ],
+  "ctx": [
+   "20260317000635-01391",
+   "20260317000635-00073",
+   "20260317000635-00173",
+   "20260317000635-01395",
+   "20260317000635-00065",
+   "20260317000635-01389"
+  ],
+  "usage": {
+   "prompt_tokens": 1128,
+   "completion_tokens": 732,
+   "total_tokens": 1860,
+   "cost": 0.00269656,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 1024,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.00269656,
+    "upstream_inference_prompt_cost": 0.0001492,
+    "upstream_inference_completions_cost": 0.00254736
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 524,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ {
+  "q": "현대자동차 주당 배당금은 전년 대비 어떻게 바뀌었나?",
+  "refused": false,
+  "reason": "",
+  "answer": [
+   {
+    "sentence": "현대자동차의 주당 배당금은 모든 주식 종류에서 전년 대비 감소했습니다.",
+    "cites": [
+     1,
+     2,
+     3,
+     6
+    ],
+    "check": "ok",
+    "missing": []
+   },
+   {
+    "sentence": "보통주는 전기 주당 총 배당금 12,000원(중간배당 6,000원 + 연차배당 6,000원)에서, 당기 주당 총 배당금 10,000원(중간배당 7,500원 + 연차배당 2,500원)으로 감소했습니다.",
+    "cites": [
+     1,
+     2,
+     3,
+     6
+    ],
+    "check": "unverified",
+    "missing": [
+     "12,000",
+     "10,000"
+    ]
+   },
+   {
+    "sentence": "1우선주는 전기 주당 총 배당금 12,050원(중간배당 6,000원 + 연차배당 6,050원)에서, 당기 주당 총 배당금 10,050원(중간배당 7,500원 + 연차배당 2,550원)으로 감소했습니다.",
+    "cites": [
+     1,
+     2,
+     3,
+     6
+    ],
+    "check": "unverified",
+    "missing": [
+     "12,050",
+     "10,050"
+    ]
+   },
+   {
+    "sentence": "2우선주는 전기 주당 총 배당금 12,100원(중간배당 6,000원 + 연차배당 6,100원)에서, 당기 주당 총 배당금 10,100원(중간배당 7,500원 + 연차배당 2,600원)으로 감소했습니다.",
+    "cites": [
+     1,
+     2,
+     3,
+     6
+    ],
+    "check": "unverified",
+    "missing": [
+     "12,100",
+     "10,100"
+    ]
+   },
+   {
+    "sentence": "3우선주는 전기 주당 총 배당금 12,050원(중간배당 6,000원 + 연차배당 6,050원)에서, 당기 주당 총 배당금 10,050원(중간배당 7,500원 + 연차배당 2,550원)으로 감소했습니다.",
+    "cites": [
+     1,
+     2,
+     3,
+     6
+    ],
+    "check": "unverified",
+    "missing": [
+     "12,050",
+     "10,050"
+    ]
+   }
+  ],
+  "ctx": [
+   "20260318001394-01362",
+   "20260318001394-01366",
+   "20260318001394-01364",
+   "20260318001394-00753",
+   "20260318001394-00755",
+   "20260318001394-01368"
+  ],
+  "usage": {
+   "prompt_tokens": 2124,
+   "completion_tokens": 1729,
+   "total_tokens": 3853,
+   "cost": 0.0007930572,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 1946,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0007930572,
+    "upstream_inference_prompt_cost": 7.10268e-05,
+    "upstream_inference_completions_cost": 0.0007220304
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 1226,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ {
+  "q": "카카오의 2026년 3분기 영업이익은?",
+  "refused": true,
+  "reason": "공시에 없음",
+  "answer": [],
+  "ctx": [
+   "20250324000901-00248",
+   "20260318001423-00230",
+   "20250324000901-02155",
+   "20260318001423-01324",
+   "20260318001423-02220",
+   "20250324000901-01392"
+  ],
+  "usage": {
+   "prompt_tokens": 2011,
+   "completion_tokens": 428,
+   "total_tokens": 2439,
+   "cost": 0.0003128694,
+   "is_byok": false,
+   "prompt_tokens_details": {
+    "cached_tokens": 1493,
+    "cache_write_tokens": 0,
+    "audio_tokens": 0,
+    "video_tokens": 0
+   },
+   "cost_details": {
+    "upstream_inference_cost": 0.0003128694,
+    "upstream_inference_prompt_cost": 0.0001341366,
+    "upstream_inference_completions_cost": 0.0001787328
+   },
+   "completion_tokens_details": {
+    "reasoning_tokens": 406,
+    "image_tokens": 0,
+    "audio_tokens": 0
+   }
+  }
+ },
+ {
+  "q": "삼성전자 주식 지금 사도 될까?",
+  "refused": true,
+  "reason": "투자 권유는 하지 않습니다. 공시 내용 질문으로 바꿔 주세요.",
+  "answer": [],
+  "ctx": []
+ }
+]
