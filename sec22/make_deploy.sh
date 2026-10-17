@@ -6,8 +6,7 @@ D=${1:-$P/../deploy-workbench}
 rm -rf "${D:?}"/sec*(N) "${D:?}/data"  # .git은 남긴다
 mkdir -p "$D"
 npm --prefix $P/sec21/web run build
-rsync -a --exclude .venv --exclude node_modules --exclude __pycache__ --exclude .ruff_cache --exclude data --exclude .env \
-  --exclude "sec21/web/src/solutions" $P/ $D/
+rsync -a --exclude .venv --exclude node_modules --exclude __pycache__ --exclude .ruff_cache --exclude data --exclude .env $P/ $D/
 mkdir -p $D/data/reports
 for f in $P/data/reports/*_2025.json; do  # /api/companies는 회사 · 연도 · 접수번호만 쓴다 — 공시 본문은 넣지 않는다
   python3 -c 'import json,sys; r=json.load(open(sys.argv[1])); json.dump({k: r[k] for k in ("corp","year","rcept_no")}, open(sys.argv[2],"w"), ensure_ascii=False)' $f $D/data/reports/${f:t}
