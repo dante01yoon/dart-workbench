@@ -11,6 +11,7 @@ mkdir -p $D/data/reports
 for f in $P/data/reports/*_2025.json; do  # /api/companies는 회사 · 연도 · 접수번호만 쓴다 — 공시 본문은 넣지 않는다
   python3 -c 'import json,sys; r=json.load(open(sys.argv[1])); json.dump({k: r[k] for k in ("corp","year","rcept_no")}, open(sys.argv[2],"w"), ensure_ascii=False)' $f $D/data/reports/${f:t}
 done
+cp $P/data/repeat3_1018.json $D/data/  # 28편: 10/18 처음 버전 세 번 돌리기 답(다시 만들 수 없는 기록 · 모델 답만, 공시 본문 없음)
 cp $P/sec22/render.yaml $D/render.yaml            # Blueprint는 저장소 맨 위의 render.yaml을 읽는다
 printf '.venv\nnode_modules\n__pycache__\n.env\n' > $D/.gitignore
 printf 'node_modules\n' > $D/sec21/web/.gitignore      # 빌드한 화면(dist)은 저장소에 넣는다

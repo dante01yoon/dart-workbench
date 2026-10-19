@@ -13,6 +13,9 @@ dependencies = [
 ]
 
 [dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
 frameworks = ["langchain>=1.4", "langchain-openai>=1.7", "langchain-community>=0.4", "langchain-classic", "rank_bm25", "faiss-cpu", "llama-index-core>=0.14", "llama-index-embeddings-openai-like", "llama-index-retrievers-bm25", "llama-index-llms-openai-like", "langgraph>=1.2", "langgraph-checkpoint-sqlite"]
 
 [tool.uv]

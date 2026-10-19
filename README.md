@@ -34,6 +34,6 @@ uv run python eval/make_questions.py   # 평가 세트 60문항 + 정답 근거 
 | `mcp_server/` | 6 | 손으로 만든 MCP 서버 · 공식 SDK 버전 · 원격(HTTP + 토큰) |
 | `frameworks/` | 4·5·6 | LangChain · LlamaIndex · LangGraph · MCP 어댑터로 옮긴 버전 |
 | `app/` | 7 | 워크벤치: FastAPI 백엔드 + React·TypeScript 프론트 |
-| `sec23`~ | 8 | AI 평가: 평가 대상 지도 · 공개 벤치마크와 오염 검사 · 실행 기록에서 시험지 v2 만들기(편마다 README · SOLUTIONS) |
+| `sec23`~ | 8 | AI 평가: 평가 대상 지도 · 공개 벤치마크와 오염 검사 · 실행 기록에서 시험지 v2 만들기 · 오류 분석 · 루브릭 · 코드 채점기와 실행 기반 채점(편마다 README · SOLUTIONS) |
 
 프레임워크 비교(11·14편)는 `uv sync --group frameworks`로 추가 패키지를 설치합니다.
