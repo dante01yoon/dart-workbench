@@ -264,7 +264,9 @@ def build():
 
 
 if __name__ == "__main__":
-    (HERE / "PORTFOLIO.md").write_text(README)
+    (HERE / "PORTFOLIO.md").write_text(
+        README.replace("~", r"\~")
+    )  # GitHub는 ~ 두 개 사이를 취소선으로 그린다
     print(f"README → sec34/PORTFOLIO.md ({len(README.splitlines())}줄)")
     print("이력서 문장:")
     for g in GOOD:
