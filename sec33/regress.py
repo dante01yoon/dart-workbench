@@ -17,6 +17,7 @@ from grader import grade  # 28편 코드 채점기 v3
 
 
 def runs(name="main"):
+    """runs/<name>.jsonl — main은 26편 실행, planner_v2는 34편 다시 돌린 실행"""
     return [json.loads(line) for line in (HERE / "runs" / f"{name}.jsonl").open()]
 
 

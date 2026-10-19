@@ -51,6 +51,11 @@ def norm(s):
 
 def clean_task(t):
     """모델이 쓴 계획을 그대로 믿지 않는다: 회사 이름 공백 · 별칭을 정리하고, 모르는 회사는 버린다."""
+    # 34편: 지시문 v2가 검색어 없는 작업을 내 실행이 멈췄다 → 재무는 검색어가 필요 없고, 검색 작업은 버린다
+    if not t.get("query"):
+        if t.get("worker") != "financials":
+            return None
+        t = {**t, "query": ""}
     raw = norm(t.get("corp"))
     corp = next((c for c in CORPS if raw and (c in raw or raw in c)), None)
     return {**t, "corp": corp} if corp or t.get("worker") == "news" else None

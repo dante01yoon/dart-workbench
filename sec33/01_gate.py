@@ -5,7 +5,7 @@
   최소 차이가 17%p(31편)라서, 몇 문항 떨어진 것은 평균 속에 묻힌다.
 - 능력 세트: 점수와 기준(main) 대비 변화만 적는다.
 - 프롬프트 · 모델을 바꾼 PR은 CI에서 모델을 부르지 않는다(키를 CI에 넣지 않는다) → 로컬에서 다시 돌려 runs/를 갈아 끼운 PR로 올린다.
-사용: python sec33/01_gate.py [--log 파일 --label 이름]
+사용: python sec33/01_gate.py [--runs 이름] [--log 파일 --label 이름]   (--runs 기본 main, 34편은 planner_v2)
 """
 
 import json
@@ -14,7 +14,8 @@ import sys
 
 from regress import baseline, runs, score
 
-xs = runs()
+NAME = sys.argv[sys.argv.index("--runs") + 1] if "--runs" in sys.argv else "main"
+xs = runs(NAME)
 now, base = score(xs), baseline()
 reg = [x for x in xs if x["split"] == "regression"]
 cap = [x for x in xs if x["split"] == "capability"]
@@ -22,7 +23,9 @@ lost = [x for x in reg if not now[x["id"]]]
 n = lambda group, s: sum(s[x["id"]] for x in group)
 total, total0 = sum(now.values()), sum(base.values())
 
-print(f"회귀 관문 — 저장된 실행 {len(xs)}문항 · 지금 코드의 answer.py → 코드 채점기 v3 (모델 호출 0)")
+print(
+    f"회귀 관문 — 저장된 실행 runs/{NAME} {len(xs)}문항 · 지금 코드의 answer.py → 코드 채점기 v3 (모델 호출 0)"
+)
 print(
     f"  회귀 세트  {n(reg, now)}/{len(reg)}  {'통과' if not lost else '실패'}  (기준: 한 문항도 떨어지면 안 된다)"
 )
