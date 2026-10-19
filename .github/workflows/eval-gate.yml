@@ -12,6 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: 회귀 관문 (저장된 실행 · 모델 호출 0)
         run: python3 sec33/01_gate.py
