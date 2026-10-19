@@ -5,4 +5,9 @@
 
 def final_answer(report, evidence):
     """report: 보고서 문장 목록, evidence: 근거 카드 요약 목록 → 답 글 하나."""
-    return " ".join(report[:2])  # 모바일 카드에 맞게 앞 두 문장만
+    return " ".join(report) + " " + " ".join(evidence)
+
+
+def preview(report):
+    """모바일 카드 미리보기: 앞 두 문장. 답 본문(final_answer)은 줄이지 않는다 — 회귀 관문이 잡은 5문항."""
+    return " ".join(report[:2])
