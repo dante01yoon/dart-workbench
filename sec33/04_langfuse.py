@@ -3,7 +3,7 @@
 - 데이터셋 dart-dev-v2: 26편 53문항(질문 · 정답 키 · 회귀/능력 세트)
 - 실행 main: 문항마다 트레이스 하나(질문 → 저장된 최종 답) + 점수 correct(우리 코드 채점기 v3가 매긴 0/1)
 - 채점기는 옮기지 않는다 — 우리 함수가 매긴 점수를 Langfuse에 기록만 한다. 모델 호출 0.
-- 같은 id로 다시 올리면 덮어쓴다(두 번 돌려도 중복이 안 생긴다).
+- 같은 id로 다시 올리면 덮어쓰고, 이미 연결된 문항은 다시 연결하지 않는다(두 번 돌려도 중복이 안 생긴다).
 준비: docker compose -f sec33/langfuse/docker-compose.yml up -d (README) · 키는 셸 환경 변수에서만 읽는다.
 사용: uv run --with "langfuse>=2.60,<3" python sec33/04_langfuse.py [실행 이름]
 """
@@ -17,32 +17,15 @@ import urllib.request
 
 from answer import final_answer
 from langfuse import Langfuse
-from regress import runs, score
+from regress import load_env, runs, score
 
+load_env()
 HOST = os.environ.setdefault("LANGFUSE_HOST", "http://127.0.0.1:3300")
 RUN = sys.argv[1] if len(sys.argv) > 1 else "main"
 DS = "dart-dev-v2"
 xs = runs()
 ok = score(xs)
 lf = Langfuse()  # LANGFUSE_PUBLIC_KEY · LANGFUSE_SECRET_KEY를 환경 변수에서 읽는다
-
-t0 = time.time()
-lf.create_dataset(name=DS, description="DART 리서치 워크벤치 개발 문항(26편 실행 53문항)")
-for x in xs:
-    lf.create_dataset_item(dataset_name=DS, id=x["id"], input={"q": x["q"]},
-                           expected_output={"keys": x["keys"]}, metadata={"split": x["split"], "type": x["type"]})  # fmt: skip
-for item in lf.get_dataset(DS).items:
-    x = next(r for r in xs if r["id"] == item.id)
-    trace = lf.trace(id=f"{RUN}-{x['id']}", name="dart-research", input=x["q"], public=True,
-                     output=final_answer(x["report"], x["evidence"]), metadata={"cost": x["cost"], "seconds": x["seconds"]})  # fmt: skip
-    trace.score(
-        id=f"{RUN}-{x['id']}-correct", name="correct", value=float(ok[x["id"]]), comment="코드 채점기 v3"
-    )
-    item.link(trace, run_name=RUN)
-lf.flush()
-print(
-    f"Langfuse({HOST})에 올림 — 데이터셋 {DS} {len(xs)}문항 · 실행 {RUN} · 점수 correct · {time.time() - t0:.1f}초"
-)
 
 
 def get(path):
@@ -51,6 +34,30 @@ def get(path):
     ).decode()
     req = urllib.request.Request(HOST + path, headers={"Authorization": "Basic " + auth})
     return json.load(urllib.request.urlopen(req))
+
+
+t0 = time.time()
+lf.create_dataset(name=DS, description="DART 리서치 워크벤치 개발 문항(26편 실행 53문항)")
+for x in xs:
+    lf.create_dataset_item(dataset_name=DS, id=x["id"], input={"q": x["q"]},
+                           expected_output={"keys": x["keys"]}, metadata={"split": x["split"], "type": x["type"]})  # fmt: skip
+try:  # 이미 이 실행에 연결된 문항(두 번째 실행이면)은 다시 연결하지 않는다
+    linked = {i["datasetItemId"] for i in get(f"/api/public/datasets/{DS}/runs/{RUN}")["datasetRunItems"]}
+except urllib.error.HTTPError:
+    linked = set()
+for item in lf.get_dataset(DS).items:
+    x = next(r for r in xs if r["id"] == item.id)
+    trace = lf.trace(id=f"{RUN}-{x['id']}", name="dart-research", input=x["q"], public=True,
+                     output=final_answer(x["report"], x["evidence"]), metadata={"cost": x["cost"], "seconds": x["seconds"]})  # fmt: skip
+    trace.score(
+        id=f"{RUN}-{x['id']}-correct", name="correct", value=float(ok[x["id"]]), comment="코드 채점기 v3"
+    )
+    if item.id not in linked:
+        item.link(trace, run_name=RUN)
+lf.flush()
+print(
+    f"Langfuse({HOST})에 올림 — 데이터셋 {DS} {len(xs)}문항 · 실행 {RUN} · 점수 correct · {time.time() - t0:.1f}초"
+)
 
 
 got = {}

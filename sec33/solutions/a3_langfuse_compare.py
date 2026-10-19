@@ -11,8 +11,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from langfuse import Langfuse
-from regress import runs, score
+from regress import load_env, runs, score
 
+load_env()
 HOST = os.environ.setdefault("LANGFUSE_HOST", "http://127.0.0.1:3300")
 RUN, DS = "pr-1차", "dart-dev-v2"
 xs = runs()

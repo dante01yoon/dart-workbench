@@ -5,6 +5,7 @@
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -27,6 +28,15 @@ def check(x, make=final_answer):
 
 def score(xs, make=final_answer):
     return {x["id"]: check(x, make) for x in xs}
+
+
+def load_env():
+    """Langfuse 키(LANGFUSE_PUBLIC_KEY · LANGFUSE_SECRET_KEY)를 .env에서 읽는다 — 화면에 출력하지 않는다. CI는 쓰지 않는다."""
+    env = ROOT / ".env"
+    for line in env.read_text().splitlines() if env.exists() else []:
+        if "=" in line and not line.startswith("#"):
+            k, v = line.split("=", 1)
+            os.environ.setdefault(k.strip(), v.strip())
 
 
 def baseline():
