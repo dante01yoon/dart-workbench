@@ -1,0 +1,32 @@
+# 33편: Langfuse v2를 내 컴퓨터에서만(127.0.0.1) 띄운다 — 컨테이너 2개(Postgres + Langfuse), 가입 화면 없이 프로젝트 · 키를 시작할 때 만든다.
+# 키는 이 컴퓨터 안에서만 쓰는 시험용 값이다. 셸에서 정해 두고 띄운다(README 참고):
+#   export LANGFUSE_PUBLIC_KEY=pk-lf-... LANGFUSE_SECRET_KEY=sk-lf-...
+#   docker compose -f sec33/langfuse/docker-compose.yml up -d   → http://127.0.0.1:3300
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: langfuse
+      POSTGRES_PASSWORD: langfuse-local
+      POSTGRES_DB: langfuse
+    volumes: [lf33-db:/var/lib/postgresql/data]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U langfuse"], interval: 2s, retries: 30}
+  langfuse:
+    image: langfuse/langfuse:2
+    depends_on: {db: {condition: service_healthy}}
+    ports: ["127.0.0.1:3300:3000"]
+    environment:
+      DATABASE_URL: postgresql://langfuse:langfuse-local@db:5432/langfuse
+      NEXTAUTH_URL: http://127.0.0.1:3300
+      NEXTAUTH_SECRET: local-only-not-a-secret
+      SALT: local-only-not-a-secret
+      TELEMETRY_ENABLED: "false"
+      AUTH_DISABLE_SIGNUP: "true"
+      LANGFUSE_INIT_ORG_ID: dart-workbench
+      LANGFUSE_INIT_ORG_NAME: dart-workbench
+      LANGFUSE_INIT_PROJECT_ID: dart-eval
+      LANGFUSE_INIT_PROJECT_NAME: dart-eval
+      LANGFUSE_INIT_PROJECT_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:?셸에서 LANGFUSE_PUBLIC_KEY를 정한다}
+      LANGFUSE_INIT_PROJECT_SECRET_KEY: ${LANGFUSE_SECRET_KEY:?셸에서 LANGFUSE_SECRET_KEY를 정한다}
+volumes:
+  lf33-db:

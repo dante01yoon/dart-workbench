@@ -1,0 +1,17 @@
+# 33편 회귀 관문: PR마다 저장된 실행(sec33/runs)을 지금 코드로 다시 채점한다.
+# 모델을 부르지 않으므로 비밀 값(API 키)이 필요 없다 — 이 워크플로에는 secrets가 하나도 없다.
+name: eval-gate
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: 회귀 관문 (저장된 실행 · 모델 호출 0)
+        run: python3 sec33/01_gate.py
