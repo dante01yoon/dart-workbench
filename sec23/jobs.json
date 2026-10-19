@@ -1,0 +1,357 @@
+{
+ "checked": "2026-10-19",
+ "note": "역할 설명 · 자격 요건만 읽고 손으로 표시한 라벨. 공고는 언제든 닫힌다.",
+ "skills": [
+  {
+   "id": "design",
+   "name": "평가·벤치마크 설계",
+   "lesson": "23 · 25 · 34"
+  },
+  {
+   "id": "infra",
+   "name": "평가 인프라·플랫폼",
+   "lesson": "33 · 34"
+  },
+  {
+   "id": "agent",
+   "name": "에이전트 평가(도구·궤적·최종 상태)",
+   "lesson": "26 · 32"
+  },
+  {
+   "id": "python",
+   "name": "Python",
+   "lesson": "전 편"
+  },
+  {
+   "id": "error",
+   "name": "오류 분석·원인 진단",
+   "lesson": "26"
+  },
+  {
+   "id": "comm",
+   "name": "결과 설명·의사결정 연결",
+   "lesson": "34"
+  },
+  {
+   "id": "grader",
+   "name": "채점기·LLM 판사",
+   "lesson": "28 · 29"
+  },
+  {
+   "id": "monitor",
+   "name": "운영 모니터링·대시보드·알림",
+   "lesson": "33"
+  },
+  {
+   "id": "rubric",
+   "name": "성공 기준·루브릭",
+   "lesson": "27"
+  },
+  {
+   "id": "dataset",
+   "name": "평가 데이터셋 구축",
+   "lesson": "25"
+  },
+  {
+   "id": "ci",
+   "name": "회귀 탐지·CI 관문",
+   "lesson": "33"
+  },
+  {
+   "id": "stats",
+   "name": "통계·측정 신뢰도",
+   "lesson": "31"
+  },
+  {
+   "id": "trace",
+   "name": "트레이스 수집·리플레이",
+   "lesson": "25 · 33"
+  },
+  {
+   "id": "cost",
+   "name": "비용·지연 트레이드오프",
+   "lesson": "32 · 33"
+  },
+  {
+   "id": "safety",
+   "name": "안전·레드팀",
+   "lesson": "32"
+  },
+  {
+   "id": "posttrain",
+   "name": "사후학습(RLHF·RL) 연계",
+   "lesson": "다루지 않음"
+  },
+  {
+   "id": "rag",
+   "name": "RAG·검색 품질",
+   "lesson": "32"
+  },
+  {
+   "id": "calib",
+   "name": "판사를 사람 판단과 맞추기",
+   "lesson": "30"
+  },
+  {
+   "id": "bench",
+   "name": "공개 벤치마크 지식",
+   "lesson": "24"
+  },
+  {
+   "id": "tool",
+   "name": "평가 도구 이름(Langfuse 등)",
+   "lesson": "33"
+  }
+ ],
+ "jobs": [
+  {
+   "id": "J1",
+   "company": "Anthropic",
+   "title": "Research Engineer, Post-Training Model Evaluations",
+   "where": "SF · Seattle",
+   "date": "갱신 2026-09-27",
+   "url": "https://job-boards.greenhouse.io/anthropic/jobs/5198255008",
+   "kind": "lab",
+   "skills": [
+    "design",
+    "infra",
+    "python",
+    "error",
+    "comm",
+    "monitor",
+    "rubric",
+    "ci",
+    "stats",
+    "posttrain"
+   ]
+  },
+  {
+   "id": "J2",
+   "company": "Anthropic",
+   "title": "Cyber Evaluations Engineer",
+   "where": "미국 원격 · SF · DC",
+   "date": "갱신 2026-09-22",
+   "url": "https://job-boards.greenhouse.io/anthropic/jobs/5406367008",
+   "kind": "lab",
+   "skills": [
+    "design",
+    "infra",
+    "python",
+    "error",
+    "comm",
+    "grader",
+    "ci",
+    "safety"
+   ]
+  },
+  {
+   "id": "J3",
+   "company": "OpenAI",
+   "title": "Research Engineer, Frontier Evals & Environments",
+   "where": "SF",
+   "date": "게시 2025-04-13",
+   "url": "https://jobs.ashbyhq.com/openai/bba18df5-f30f-4d2c-909c-30e651f95579",
+   "kind": "lab",
+   "skills": [
+    "design",
+    "infra",
+    "agent",
+    "comm",
+    "grader",
+    "dataset",
+    "stats",
+    "posttrain",
+    "bench"
+   ]
+  },
+  {
+   "id": "J4",
+   "company": "Scale AI",
+   "title": "ML Research Scientist, Evaluations",
+   "where": "SF · Seattle · NY",
+   "date": "갱신 2026-10-12",
+   "url": "https://job-boards.greenhouse.io/scaleai/jobs/4728014005",
+   "kind": "lab",
+   "skills": [
+    "design",
+    "error",
+    "comm",
+    "posttrain"
+   ]
+  },
+  {
+   "id": "J5",
+   "company": "xAI 채용 보드",
+   "title": "Software Engineer - Evals",
+   "where": "Palo Alto",
+   "date": "갱신 2026-10-13",
+   "url": "https://job-boards.greenhouse.io/xai/jobs/5188230007",
+   "kind": "lab",
+   "skills": [
+    "design",
+    "infra",
+    "agent",
+    "error",
+    "grader",
+    "rubric",
+    "dataset",
+    "safety"
+   ]
+  },
+  {
+   "id": "J6",
+   "company": "Cursor",
+   "title": "Software Engineer, Agent Evaluation and Quality",
+   "where": "SF",
+   "date": "게시 2026-04-13",
+   "url": "https://jobs.ashbyhq.com/cursor/2bbe9f02-83a5-4173-98be-9085d1cb5693",
+   "kind": "product",
+   "skills": [
+    "design",
+    "infra",
+    "agent",
+    "error",
+    "comm",
+    "grader",
+    "monitor",
+    "rubric",
+    "dataset",
+    "ci",
+    "trace",
+    "cost"
+   ]
+  },
+  {
+   "id": "J7",
+   "company": "Databricks",
+   "title": "Staff Software Engineer, Agent Quality",
+   "where": "NYC",
+   "date": "갱신 2026-09-24",
+   "url": "https://databricks.com/company/careers/open-positions/job?gh_jid=8842963002",
+   "kind": "product",
+   "skills": [
+    "design",
+    "infra",
+    "agent",
+    "python",
+    "monitor",
+    "ci",
+    "stats",
+    "trace"
+   ]
+  },
+  {
+   "id": "J8",
+   "company": "Glean",
+   "title": "Machine Learning Engineer, Assistant Quality",
+   "where": "SF",
+   "date": "갱신 2026-08-04",
+   "url": "https://job-boards.greenhouse.io/gleanwork/jobs/4711484005",
+   "kind": "product",
+   "skills": [
+    "design",
+    "infra",
+    "agent",
+    "python",
+    "monitor",
+    "posttrain",
+    "rag"
+   ]
+  },
+  {
+   "id": "J9",
+   "company": "Glean",
+   "title": "Tech Lead Manager, AI Evaluations",
+   "where": "Mountain View",
+   "date": "갱신 2026-10-12",
+   "url": "https://job-boards.greenhouse.io/gleanwork/jobs/4742957005",
+   "kind": "product",
+   "skills": [
+    "design",
+    "infra",
+    "agent",
+    "python",
+    "error",
+    "comm",
+    "grader",
+    "monitor",
+    "rubric",
+    "dataset",
+    "ci",
+    "stats",
+    "trace",
+    "cost",
+    "safety",
+    "rag",
+    "calib",
+    "bench"
+   ]
+  },
+  {
+   "id": "J10",
+   "company": "Perplexity",
+   "title": "MTS (Answer Quality & Evals)",
+   "where": "SF",
+   "date": "게시 2026-04-13",
+   "url": "https://jobs.ashbyhq.com/perplexity/7755eb0a-0f51-4286-b75e-591e44c741bc",
+   "kind": "product",
+   "skills": [
+    "design",
+    "infra",
+    "agent",
+    "python",
+    "error",
+    "comm",
+    "monitor",
+    "trace",
+    "rag"
+   ]
+  },
+  {
+   "id": "J11",
+   "company": "Perplexity",
+   "title": "MTS (SWE, Enterprise Agent Evals & Efficiency)",
+   "where": "SF",
+   "date": "게시 2026-10-19",
+   "url": "https://jobs.ashbyhq.com/perplexity/f3814af2-55a3-49a5-b0cb-67199a2a45fb",
+   "kind": "product",
+   "skills": [
+    "design",
+    "infra",
+    "agent",
+    "python",
+    "error",
+    "grader",
+    "rubric",
+    "dataset",
+    "ci",
+    "stats",
+    "cost",
+    "calib"
+   ]
+  },
+  {
+   "id": "J12",
+   "company": "Future",
+   "title": "Applied AI Engineer",
+   "where": "미국 원격",
+   "date": "갱신 2026-06-03",
+   "url": "https://job-boards.greenhouse.io/future/jobs/4683133005",
+   "kind": "product",
+   "skills": [
+    "design",
+    "agent",
+    "python",
+    "comm",
+    "grader",
+    "monitor",
+    "rubric",
+    "dataset",
+    "trace",
+    "cost",
+    "safety",
+    "tool"
+   ]
+  }
+ ]
+}

@@ -29,10 +29,11 @@ uv run python eval/make_questions.py   # 평가 세트 60문항 + 정답 근거 
 | 폴더 | 섹션 | 내용 |
 |---|---|---|
 | `dart_rag/` | 1~5 | OpenDART 클라이언트, 수집·청킹, 검색(BM25·벡터·하이브리드·재정렬), 답변·인용 검증, 하네스·성적표, 리서치 팀 |
-| `eval/` | 1·4 | 평가 문항과 채점 기준 |
+| `eval/` | 1·4·8 | 평가 문항과 채점 기준 · 시험지 v2(`questions_v2.jsonl`, 25편) |
 | `skills/` | 3 | SKILL.md 예제 8개 |
 | `mcp_server/` | 6 | 손으로 만든 MCP 서버 · 공식 SDK 버전 · 원격(HTTP + 토큰) |
 | `frameworks/` | 4·5·6 | LangChain · LlamaIndex · LangGraph · MCP 어댑터로 옮긴 버전 |
 | `app/` | 7 | 워크벤치: FastAPI 백엔드 + React·TypeScript 프론트 |
+| `sec23`~ | 8 | AI 평가: 평가 대상 지도 · 공개 벤치마크와 오염 검사 · 실행 기록에서 시험지 v2 만들기(편마다 README · SOLUTIONS) |
 
 프레임워크 비교(11·14편)는 `uv sync --group frameworks`로 추가 패키지를 설치합니다.

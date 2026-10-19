@@ -1,0 +1,25 @@
+{
+ "checked": "2026-10-19",
+ "rows": [
+  {"name": "MMLU", "year": "2020", "measures": "57개 과목 지식(객관식 4지선다)", "grading": "보기 하나 고르기 → 정답과 일치(정확도)",
+   "size": "57과목 · 15,908문항(시험 14,079)", "headline": "무작위 25.0% · 일반인 34.5% · 전문가 추정 89.8% · GPT-3 43.9%",
+   "limit": "지식은 재지만 도구 사용 · 여러 단계 작업은 못 잰다. 공개된 지 오래돼 학습 데이터에 섞였을 수 있다",
+   "url": "https://arxiv.org/abs/2009.03300", "where": "3 A Multitask Test · Table 1"},
+  {"name": "SWE-bench", "year": "2023", "measures": "실제 GitHub 이슈를 고치는 코딩 능력", "grading": "패치를 적용하고 테스트 실행 → 실패하던 테스트가 통과 + 원래 통과하던 테스트도 통과(실행 기반)",
+   "size": "2,294문제 · 파이썬 저장소 12개", "headline": "논문 당시 Claude 2가 1.96% 해결(BM25 검색)",
+   "limit": "파이썬 · 저장소 12개뿐. 문제 설명이 모호하거나 테스트가 불공정한 문항이 섞여 있었다 → Verified",
+   "url": "https://arxiv.org/abs/2310.06770", "where": "Abstract · Table 2 · Appendix A.4"},
+  {"name": "SWE-bench Verified", "year": "2024", "measures": "SWE-bench에서 사람이 걸러 낸 500문항", "grading": "SWE-bench와 같음(테스트 실행)",
+   "size": "500문항(개발자 93명이 1,699문항 검토)", "headline": "설명 모호 38.3% · 불공정 테스트 61.1% 표시 → 68.3% 제외. GPT-4o 16% → 33.2%",
+   "limit": "점수가 오르는 만큼 공개 문항이 학습에 섞일 위험도 커진다",
+   "url": "https://openai.com/index/introducing-swe-bench-verified/", "where": "2024-08-13 OpenAI 글(직접 접속 403 → 웹 아카이브 2024-08-16 사본으로 확인)"},
+  {"name": "τ-bench", "year": "2024", "measures": "도구를 쓰며 사용자와 대화하는 에이전트(소매 · 항공)", "grading": "대화가 끝난 뒤 데이터베이스 상태를 목표 상태와 비교 · pass^k = k번 모두 성공할 확률",
+   "size": "τ-retail · τ-airline 두 영역", "headline": "gpt-4o 성공 50% 미만(평균 48.2%) · 소매 pass^8 25% 미만",
+   "limit": "두 영역뿐. 시뮬레이션 사용자(모델)가 대화 상대라 사용자 쪽 실수도 섞인다",
+   "url": "https://arxiv.org/abs/2406.12045", "where": "Abstract · 3 Pass^k metric · Table 2 · Figure 4"},
+  {"name": "GSM1k (오염 검사)", "year": "2024", "measures": "GSM8k(초등 수학)와 같은 난이도로 사람이 새로 쓴 문제", "grading": "최종 숫자 답 일치",
+   "size": "1,205문제(사람만 작성, 모델 사용 안 함)", "headline": "정확도가 최대 8% 떨어짐(v4 · 처음 판은 13%) · Phi · Mistral · 일부 Llama는 꾸준히 과적합 · Gemini · GPT · Claude는 거의 없음",
+   "limit": "수학 한 종류. 오염을 '증명'하지는 못하고 신호를 준다",
+   "url": "https://arxiv.org/abs/2405.00332", "where": "Abstract · 3 GSM1k · 5.1 · 5.2 · Figure 1"}
+ ]
+}
